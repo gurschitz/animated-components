@@ -50,12 +50,13 @@ const Content = styled(a.div)`
 `;
 
 type CardType = {
+  header: JSX.Element;
   className?: string;
   children?: JSX.Element;
   content?: JSX.Element;
 };
 
-export function Card({ className, children, content }: CardType) {
+export function Card({ className, children, content, header }: CardType) {
   const [isOpen, setIsOpen] = useState(false);
   const previous = usePrevious(isOpen);
 
@@ -74,7 +75,7 @@ export function Card({ className, children, content }: CardType) {
           className="focus:outline-none flex justify-between items-center w-full"
           onClick={() => setIsOpen(o => !o)}
         >
-          <h1 className="text-2xl font-bold">Card</h1>
+          {title}
 
           <CardButton isOpen={isOpen} />
         </button>
@@ -98,9 +99,21 @@ export default function Cards() {
   return (
     <div className="h-full w-full flex justify-center items-center bg-gray-300">
       <div className="max-w-lg w-full shadow-lg">
-        <Card className="bg-blue-600 text-white" content={cardA}>
-          <Card className="bg-white text-gray-900" content={cardB}>
-            <Card className="bg-yellow-300 text-gray-900" content={cardC} />
+        <Card
+          className="bg-blue-600 text-white"
+          header={<h1 className="text-2xl font-bold">Card A</h1>}
+          content={cardA}
+        >
+          <Card
+            header={<h1 className="text-2xl font-bold">Card B</h1>}
+            className="bg-white text-gray-900"
+            content={cardB}
+          >
+            <Card
+              header={<h1 className="text-2xl font-bold">Card C</h1>}
+              className="bg-yellow-300 text-gray-900"
+              content={cardC}
+            />
           </Card>
         </Card>
       </div>
