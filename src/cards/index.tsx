@@ -75,7 +75,7 @@ export function Card({ className, children, content, header }: CardType) {
           className="focus:outline-none flex justify-between items-center w-full"
           onClick={() => setIsOpen(o => !o)}
         >
-          {title}
+          {header}
 
           <CardButton isOpen={isOpen} />
         </button>
