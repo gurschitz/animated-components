@@ -51,11 +51,11 @@ const Content = styled(a.div)`
 
 type CardType = {
   className?: string;
-  children?: React.ReactNode;
-  content?: React.ReactNode;
+  children?: JSX.Element;
+  content?: JSX.Element;
 };
 
-function Card({ className, children, content }: CardType) {
+export function Card({ className, children, content }: CardType) {
   const [isOpen, setIsOpen] = useState(false);
   const previous = usePrevious(isOpen);
 
