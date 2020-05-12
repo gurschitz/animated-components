@@ -1,11 +1,11 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Example } from '../.';
+import Example from '../src/pager';
 
 const App = () => {
   return (
-    <div>
+    <div className="h-full">
       <Example />
     </div>
   );
