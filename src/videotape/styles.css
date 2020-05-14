@@ -1,0 +1,36 @@
+.triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 80px 80px 80px 0;
+  border-color: transparent #140919 transparent transparent;
+}
+
+.small-triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 20px 15px 0;
+  border-color: transparent #63b3ed transparent transparent;
+}
+
+.bg-videotape-bottom {
+  background-color: #f3f1e5;
+}
+
+.bg-videotape {
+  background-color: #fefefe;
+}
+
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('CoolveticaRg-Regular.woff2') format('woff2'),
+    url('CoolveticaRg-Regular.woff') format('woff'),
+    url('CoolveticaRg-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.coolvetica {
+  font-family: 'Coolvetica';
+}
