@@ -46,9 +46,9 @@ export default function Videotape() {
       `}</style>
       <div
         style={{ maxWidth: 321, height: 600 }}
-        className="shadow-lg rounded overflow-hidden mx-auto flex flex-col justify-between"
+        className="bg-videotape shadow-lg rounded overflow-hidden mx-auto flex flex-col justify-between"
       >
-        <div className="bg-videotape">
+        <div>
           <div
             style={{ fontSize: 37 }}
             className="pl-2 pr-3 font-bold pt-5 font-serif"

@@ -123,7 +123,7 @@ Pager.SlideContainer = SlideContainer;
 
 export default function Example() {
   return (
-    <div className="h-full w-full flex justify-center items-center bg-gray-200">
+    <div className="h-full w-full flex justify-center items-center">
       <Pager
         className="w-full max-w-lg"
         innerClassName="bg-white rounded-lg h-64"

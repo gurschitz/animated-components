@@ -97,7 +97,7 @@ export default function Cards() {
   const cardB = <div className="px-6 py-4">Content of Card B</div>;
   const cardC = <div className="px-6 py-4">Content of Card C</div>;
   return (
-    <div className="h-full w-full flex justify-center items-center bg-gray-300">
+    <div className="h-full w-full flex justify-center items-center">
       <div className="max-w-lg w-full shadow-lg">
         <Card
           className="bg-blue-600 text-white"
