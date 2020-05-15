@@ -1,7 +1,7 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Example from '../src/videotape';
+import Example from '../src/pager';
 
 const App = () => {
   return (
