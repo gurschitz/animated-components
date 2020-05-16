@@ -206,7 +206,7 @@ export default function Example() {
 
   return (
     <ScrollContext.Provider value={scrollPosition}>
-      <div className="h-full w-full flex justify-center items-center bg-gray-200">
+      <div className="h-full w-full flex justify-center items-center">
         <div
           style={{ height: 400 }}
           onScroll={onScroll}
