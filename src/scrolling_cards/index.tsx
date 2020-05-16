@@ -139,74 +139,37 @@ function Card({ children, className }: CardType) {
   const ref = useRef<HTMLDivElement>(null);
   const [animation, animate] = useSpring(() => ({
     opacity: 1,
-    scale: 1,
-    translateY: 0,
+    ratio: 1,
+    totalRatio: 1,
     zIndex: 20,
   }));
 
   useEffect(() => {
     const offsetTop = ref.current?.offsetTop;
     const clientHeight = ref.current?.clientHeight;
-    // const scrollHeight = ref.current?.parentElement?.scrollHeight || 1;
     if (offsetTop && clientHeight && scrollPosition > 0) {
-      // if (first) {
-      //   console.log(
-      //     { scrollPosition, scrollHeight, offsetTop, clientHeight },
-      //     scrollPosition / (offsetTop + clientHeight)
-      //   );
-      // }
       const cardMinPos = Math.max(offsetTop - 50, 0);
       const cardMaxPos = clientHeight + cardMinPos;
+      const cardHeight = cardMaxPos - cardMinPos;
 
       let ratio = 1;
 
-      // if(scrollPosition > )
-      console.log(cardMaxPos - scrollPosition);
-
-      // if (first) {
-      //   console.log(scrollPosition);
-      // }
-      // const ratio = Math.min(
-      //   Math.max((cardMaxPos - scrollPosition) / cardMaxPos, 0),
-      //   cardMaxPos
-      // );
-
-      // if (first) {
-      //   console.log({ scrollPosition, cardMinPos });
-      // }
-
-      if (scrollPosition - cardMinPos > 0) {
-        // ratio = (cardMaxPos - scrollPosition) / scrollPosition;
-        // ratio = Math.min(
-        //   Math.max((cardMaxPos - scrollPosition) / cardMaxPos, 0),
-        //   cardMaxPos
-        // );
+      const distance = cardMaxPos - scrollPosition;
+      if (distance < cardHeight) {
+        ratio = Math.min(Math.max(distance / cardHeight, 0), cardMaxPos);
       }
-
-      // if (scrollPosition > cardMaxPos) {
-      //   ratio = 0;
-      // }
-
-      // if (scrollPosition > cardMinPos && scrollPosition <= cardMaxPos) {
-      //   ratio = Math.min(
-      //     Math.max((cardMaxPos - scrollPosition) / cardMaxPos, 0),
-      //     cardMaxPos
-      //   );
-      // }
 
       const zIndex = ratio < 1 ? 10 : 20;
       animate({
         opacity: ratio,
-        scale: ratio,
         zIndex,
-        translateY: (1 - ratio) * 200,
+        ratio,
       });
     } else {
       animate({
         opacity: 1,
-        scale: 1,
         zIndex: 10,
-        translateY: 0,
+        ratio: 1,
       });
     }
   }, [scrollPosition]);
@@ -215,9 +178,15 @@ function Card({ children, className }: CardType) {
     <a.div
       ref={ref}
       style={{
-        marginTop: -20,
-        // paddingBottom: last ? undefined : 25,
         position: 'relative',
+        translateY: animation.ratio.interpolate({
+          range: [1, 0],
+          output: [0, 200],
+        }),
+        scale: animation.ratio.interpolate({
+          range: [1, 0],
+          output: [1, 0],
+        }),
         ...animation,
       }}
       className={className}
@@ -231,6 +200,7 @@ export default function Example() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const onScroll = useCallback(event => {
     const container = event.target as HTMLDivElement;
+    console.log(container.scrollTop);
     setScrollPosition(container.scrollTop);
   }, []);
 
@@ -238,9 +208,9 @@ export default function Example() {
     <ScrollContext.Provider value={scrollPosition}>
       <div className="h-full w-full flex justify-center items-center bg-gray-200">
         <div
-          style={{ paddingTop: 50 }}
+          style={{ height: 400 }}
           onScroll={onScroll}
-          className="border p-4 overflow-scroll h-full"
+          className="relative border p-4 overflow-scroll space-y-5"
         >
           <Card className="shadow-lg bg-white p-4 rounded-lg text-dark w-64">
             <div>card</div>
